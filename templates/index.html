@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stocks plotting mini-project</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    {{resources | safe | indent(4)}}
+    <style>
+    html{
+        margin: 2rem}
+    form{
+        max-width: 300px;
+    }
+    </style>
+</head>
+<body>
+    <form action="/" method="GET">
+        <label class="label" for="symbol">Stock symbol</label>
+        <input class="input" type="text" name="symbol" id="symbol" placeholder="e.g. GOOG" required>
+        <br>
+
+        <label class="label" for="start">Start date</label>
+        <input class="input" type="date" name="start" id="start"placeholder="e.g. 2020-01-01" required>
+        <br>
+
+        <label class="label" for="end">End date</label>
+        <input class="input" type="date" name="end" id="end"placeholder='e.g. 2020-02-01' required>
+        <br>
+
+        <button class="button is-success"type="submit">plot</button>
+    </form>
+{{plot_div | safe | indent(4)}}
+{{plot_script | safe | indent(4)}}
+<!-- this is to get the previous submitted form values from the URL and keep it -->
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    document.getElementById('symbol').value = urlParams.get('symbol');
+    document.getElementById('start').value = urlParams.get('start');
+    document.getElementById('end').value = urlParams.get('end');
+</script>
+</body>
+</html>
